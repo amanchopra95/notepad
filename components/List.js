@@ -13,7 +13,7 @@ const List = (props) => {
     return (
         <FlatList 
             data={props.data}
-            renderItem={(itemData) => <NotepadItem onPress={setScreen(itemData.item.id, itemData.item.title)} title={itemData.item.title} data={itemData.item} />}
+            renderItem={(itemData) => <NotepadItem onPress={() => setScreen(itemData.item.id, itemData.item.title)} title={itemData.item.title} data={itemData.item} />}
             keyExtractor={item => item.title}
         />
     );

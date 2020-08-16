@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   SafeAreaView,
   TextInput,
@@ -8,57 +8,11 @@ import {
   BackHandler,
 } from "react-native";
 
-// class Notepad extends React.Component {
-//   state = {
-
-//   }
-
-//   componentDidMount () {
-//     console.log(this.props)
-//   }
-
-//   static navigationOptions = {
-//     title: "Title of the note"
-//   }
-
-//   textInput = React.createRef()
-
-//   handleBack() {
-//     console.log(this.textInput.current.value)
-//   }
-
-//   handleHardwareBackButton() {
-//     BackHandler.addEventListener('hardwareBackPress', () => {
-//       this.handleBack()
-//       this.props.navigation.goBack()
-//       return true
-//     })
-//   }
-
-//   componentWillUnmount () {
-//     BackHandler.removeEventListener('hardwareBackPress')
-//   }
-
-//   render () {
-//     return (
-//       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-//         <SafeAreaView style={styles.container}>
-//           <TextInput 
-//             autoFocus={true}
-//             ref={textInput} 
-//             multiline={true}
-//             spellCheck={true}
-//             style={styles.textInput}
-//             value={this.props.value}></TextInput>
-//         </SafeAreaView>
-//       </TouchableWithoutFeedback>
-//     )
-//   }
-
-// }
+import data from '../data/data'
 
 export default function Notepad (props) {
-
+  const [text, setText] = useState(null)
+  const [id, setId] = useState(null)
   const textInput = useRef();
 
   const handleBack = () => {
@@ -67,8 +21,15 @@ export default function Notepad (props) {
   }
 
   useEffect(() => {
-    console.log(props.navigation)
     props.navigation.setParams({ title: props.navigation.getParam('title', 'New Text Page') })
+    if (props.navigation.getParam('id')) {
+      setId(props.navigation.getParam('id'))
+      data.map((notepad) => {
+        if (notepad.id === id) {
+          setText(notepad.text)
+        }
+      })
+    } 
   }, [])
 
   const handleHardwareBackButton = () => {
@@ -94,7 +55,7 @@ export default function Notepad (props) {
           multiline={true}
           spellCheck={true}
           style={styles.textInput}
-          value={props.value}></TextInput>
+          value={text}></TextInput>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
