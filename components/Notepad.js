@@ -11,7 +11,7 @@ import {
 import data from '../data/data'
 
 export default function Notepad (props) {
-  const [text, setText] = useState(null)
+  const [text, setText] = useState(props.navigation.getParam('text', ''))
   const [id, setId] = useState(null)
   const textInput = useRef();
 

@@ -23,6 +23,7 @@ const Lists = [
     new NotepadList(20, 'Abel\'s Formula', "Some text about the new and how it is rendered in the sky."),
     new NotepadList(21, 'Gauss Theorem', "Some text about the new and how it is rendered in the sky."),
     new NotepadList(22, 'Symmetry', "Some text about the new and how it is rendered in the sky."),
+    new NotepadList(23, 'Carnot Cycle', 'Second Law of thermodynamics.')
 
 ]
 
