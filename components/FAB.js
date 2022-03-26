@@ -8,37 +8,37 @@ import {
   Platform,
 } from "react-native";
 
-export default function FAB ({ onPress, icon }) {
+export default function FAB({ onPress, icon }) {
 
-    const Component = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback
+  const PlatformDependentComponent = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback
 
-    return (
-      <Component onPress={onPress}>
-        <View style={styles.button}>
-          <Text style={styles.icon}>Add</Text>
-        </View>
-      </Component>
-    );
+  return (
+    <PlatformDependentComponent onPress={onPress}>
+      <View style={styles.button}>
+        <Text style={styles.icon}>+</Text>
+      </View>
+    </PlatformDependentComponent>
+  );
 }
 
 const styles = StyleSheet.create({
-    button: {
-        borderRadius: 50,
-        backgroundColor: "#ee6e73",
-        // backgroundColor: "#f7287b",
-        width: 60,
-        height: 60,
-        position: "absolute",
-        bottom: 10,
-        right: 10,
-        alignContent: "center",
-        justifyContent: "center",
-        elevation: 10
-    },
-    icon: {
-        textAlign: "center",
-        color: "#fff",
-        fontSize: 16,
-        fontWeight: "bold"
-    }
+  button: {
+    borderRadius: 50,
+    // backgroundColor: "#ee6e73",
+    backgroundColor: "#f7287b",
+    width: 45,
+    height: 45,
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    alignContent: "center",
+    justifyContent: "center",
+    elevation: 10
+  },
+  icon: {
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold"
+  }
 })

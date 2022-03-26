@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import React from 'react';
+import { StyleSheet, FlatList } from 'react-native';
 import { withNavigation } from 'react-navigation'
 
 import NotepadItem from './NotepadItem';
@@ -10,10 +10,18 @@ const List = (props) => {
         props.navigation.navigate('Text', { title: title, id: id, text: text })
     }
 
+    const renderNotepadItem = (itemData) => {
+        return (
+            <NotepadItem
+                onPress={() => setScreen(itemData.item.id, itemData.item.title, itemData.item.text)} title={itemData.item.title}
+                data={itemData.item} />
+        )
+    }
+
     return (
-        <FlatList 
+        <FlatList
             data={props.data}
-            renderItem={(itemData) => <NotepadItem onPress={() => setScreen(itemData.item.id, itemData.item.title, itemData.item.text)} title={itemData.item.title} data={itemData.item} />}
+            renderItem={renderNotepadItem}
             keyExtractor={item => item.title}
         />
     );

@@ -10,7 +10,7 @@ import {
 
 import data from '../data/data'
 
-export default function Notepad (props) {
+export default function Notepad(props) {
   const [text, setText] = useState(props.navigation.getParam('text', ''))
   const [id, setId] = useState(null)
   const textInput = useRef();
@@ -21,7 +21,7 @@ export default function Notepad (props) {
   }
 
   useEffect(() => {
-    props.navigation.setParams({ title: props.navigation.getParam('title', 'New Text Page') })
+    props.navigation.setParams({ title: props.navigation.getParam('title', '') })
     if (props.navigation.getParam('id')) {
       setId(props.navigation.getParam('id'))
       data.map((notepad) => {
@@ -29,7 +29,7 @@ export default function Notepad (props) {
           setText(notepad.text)
         }
       })
-    } 
+    }
   }, [])
 
   const handleHardwareBackButton = () => {
@@ -49,26 +49,27 @@ export default function Notepad (props) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
-        <TextInput 
+        <TextInput
           autoFocus={true}
-          ref={textInput} 
+          ref={textInput}
           multiline={true}
           spellCheck={true}
           style={styles.textInput}
-          value={text}></TextInput>
+          onChangeText={newText => setText(newText)}
+          defaultValue={text}></TextInput>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#fff',
-      color: '#000',
-      flex: 1,
-      borderBottomColor: "#000"
-    },
-    textInput: {
-      padding: 15
-    }
+  container: {
+    backgroundColor: '#fff',
+    color: '#000',
+    flex: 1,
+    borderBottomColor: "#000"
+  },
+  textInput: {
+    padding: 15
+  }
 });

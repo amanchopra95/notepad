@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import Layout from '../container/Layout';
+import Home from '../components/Home';
 import Colors from '../constants/colors'
 import Lists from '../data/data'
 
@@ -9,12 +9,12 @@ const HomeScreen = (props) => {
   const [data, setData] = useState(Lists);
 
   const setScreen = () => {
-    props.navigation.navigate('Text')
+    props.navigation.navigate('Home')
   }
 
   return (
     <View style={styles.container}>
-      <Layout 
+      <Home
         setScreen={setScreen}
         data={data} />
     </View>
