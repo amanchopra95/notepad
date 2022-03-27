@@ -13,7 +13,7 @@ export default function FAB({ onPress, icon }) {
   const PlatformDependentComponent = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback
 
   return (
-    <PlatformDependentComponent onPress={onPress}>
+    <PlatformDependentComponent onPress={() => onPress('Notepad')}>
       <View style={styles.button}>
         <Text style={styles.icon}>+</Text>
       </View>

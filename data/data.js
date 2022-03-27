@@ -2,8 +2,8 @@ import NotepadList from '../models/NotepadList';
 
 const Lists = [
     new NotepadList(1, 'New Moon', "Some text about the new and how it is rendered in the sky."),
-    new NotepadList(2, 'Eclipse', "Some text about the new and how it is rendered in the sky."),
-    new NotepadList(3, 'Eclipse Helios', "Some text about the new and how it is rendered in the sky."),
+    new NotepadList(2, 'Eclipse', "Some text about the new Eclipse and how it is rendered in the sky."),
+    new NotepadList(3, 'Eclipse Helios', "Some text about the new Eclipse Helios and how it is rendered in the sky."),
     new NotepadList(4, 'Saturn', "Some text about the new and how it is rendered in the sky."),
     new NotepadList(5, 'Ceres', "Some text about the new and how it is rendered in the sky."),
     new NotepadList(6, 'Photon', "Some text about the new and how it is rendered in the sky."),

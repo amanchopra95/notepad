@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
-import { withNavigation } from 'react-navigation'
 
 import NotepadItem from './NotepadItem';
 
 const List = (props) => {
 
     const setScreen = (id, title, text) => {
-        props.navigation.navigate('Text', { title: title, id: id, text: text })
+        props.onPress('Notepad', { title: title, id: id, text: text })
     }
 
     const renderNotepadItem = (itemData) => {
@@ -31,4 +30,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default withNavigation(List)
+export default List

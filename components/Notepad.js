@@ -11,7 +11,7 @@ import {
 import data from '../data/data'
 
 export default function Notepad(props) {
-  const [text, setText] = useState(props.navigation.getParam('text', ''))
+  const [text, setText] = useState(props.route.params?.text ?? '')
   const [id, setId] = useState(null)
   const textInput = useRef();
 
@@ -21,7 +21,7 @@ export default function Notepad(props) {
   }
 
   useEffect(() => {
-    props.navigation.setParams({ title: props.navigation.getParam('title', '') })
+    props.navigation.setParams({ title: props.route.params?.title ?? '' })
     if (props.navigation.getParam('id')) {
       setId(props.navigation.getParam('id'))
       data.map((notepad) => {

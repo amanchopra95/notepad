@@ -5,11 +5,11 @@ import Home from '../components/Home';
 import Colors from '../constants/colors'
 import Lists from '../data/data'
 
-const HomeScreen = (props) => {
+export const HomeScreen = (props) => {
   const [data, setData] = useState(Lists);
 
-  const setScreen = () => {
-    props.navigation.navigate('Home')
+  const setScreen = (screen, options = {}) => {
+    props.navigation.navigate(screen, options);
   }
 
   return (
@@ -28,5 +28,3 @@ const styles = StyleSheet.create({
     marginTop: -2
   },
 });
-
-export default HomeScreen;
