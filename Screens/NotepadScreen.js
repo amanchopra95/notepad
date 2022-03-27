@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-    SafeAreaView,
-    TextInput,
-    StyleSheet,
     TouchableWithoutFeedback,
     Keyboard,
     BackHandler,
 } from "react-native";
 
 import data from '../data/data'
+import { Notepad } from '../components/Notepad';
 
 export const NotepadScreen = (props) => {
     const [text, setText] = useState(props.route.params?.text ?? '')
@@ -48,28 +46,10 @@ export const NotepadScreen = (props) => {
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <SafeAreaView style={styles.container}>
-                <TextInput
-                    autoFocus={true}
-                    ref={textInput}
-                    multiline={true}
-                    spellCheck={true}
-                    style={styles.textInput}
-                    onChangeText={newText => setText(newText)}
-                    defaultValue={text}></TextInput>
-            </SafeAreaView>
+            <Notepad
+                setText={setText}
+                text={text}
+            />
         </TouchableWithoutFeedback>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff',
-        color: '#000',
-        flex: 1,
-        borderBottomColor: "#000"
-    },
-    textInput: {
-        padding: 15
-    }
-});

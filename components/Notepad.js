@@ -1,64 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
   SafeAreaView,
   TextInput,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Keyboard,
-  BackHandler,
+  StyleSheet
 } from "react-native";
 
-import data from '../data/data'
-
-export default function Notepad(props) {
-  const [text, setText] = useState(props.route.params?.text ?? '')
-  const [id, setId] = useState(null)
+export function Notepad(props) {
   const textInput = useRef();
 
-  const handleBack = () => {
-    // Save data before back.
-    console.log(textInput.current.value)
-  }
-
-  useEffect(() => {
-    props.navigation.setParams({ title: props.route.params?.title ?? '' })
-    if (props.navigation.getParam('id')) {
-      setId(props.navigation.getParam('id'))
-      data.map((notepad) => {
-        if (notepad.id === id) {
-          setText(notepad.text)
-        }
-      })
-    }
-  }, [])
-
-  const handleHardwareBackButton = () => {
-    BackHandler.addEventListener('hardwareBackPress', () => {
-      handleBack()
-      props.navigation.goBack()
-      return true;
-    })
-
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress')
-    }
-  }
-
-  useEffect(handleHardwareBackButton)
-
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={styles.container}>
-        <TextInput
-          autoFocus={true}
-          ref={textInput}
-          multiline={true}
-          spellCheck={true}
-          style={styles.textInput}
-          onChangeText={newText => setText(newText)}
-          defaultValue={text}></TextInput>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+    <SafeAreaView style={styles.container}>
+      <TextInput
+        autoFocus={true}
+        ref={textInput}
+        multiline={true}
+        spellCheck={true}
+        style={styles.textInput}
+        onChangeText={newText => props.setText(newText)}
+        defaultValue={props.text}></TextInput>
+    </SafeAreaView>
   );
 }
 
